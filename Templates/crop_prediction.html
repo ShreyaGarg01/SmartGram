@@ -1,9 +1,23 @@
-<div class="container py-2 mx-auto my-50 h-10 ">
+{% extends 'page_layout.html' %}
+
+{% block body %}
+<link href="{{ url_for('static', filename='css/login_signup.css')}}" rel="stylesheet">
+
+<br><br><br><br>
+
+<div class="container py-2 mx-auto my-50 h-10 " >
     <div class="row">
+        <div  class="box_form">
         <div class="col-sm py-2 py-md-3">
             <div class="card card-body">
-                 <h1 class="text-center"><b>You should grow <i>{{ prediction }} </i>in your farm</b></h1>
+                 <h1 class="text-center"><b>You should grow  
+                    <br><div style="color: darkgreen;"><i>{{ prediction }} </i></div>
+                    in your farm</b></h1>
             </div>
         </div>
-    </div>
+    </div></div>
   </div>
+
+  <br><br><br>
+
+  {% endblock %}

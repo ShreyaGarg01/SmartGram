@@ -25,6 +25,16 @@ def crop_recommend():
     title = 'Crop Recommendation'
     return render_template('crop_recommendation.html', title=title)
 
+
+
+# render crop recommendation form page
+@ app.route('/weather-forecast')
+def weather_forecast():
+    title = 'Weather Forecast'
+    # return render_template('weather_predication.html', title=title)
+    return render_template('weather_forecast.html', title=title)
+
+
 # RENDER PREDICTION PAGES
 
 @ app.route('/crop-predict', methods=['POST'])
@@ -46,4 +56,4 @@ def crop_prediction():
         return render_template('crop_prediction.html', prediction=final_prediction, title=title)
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug = True)

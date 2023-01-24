@@ -1,51 +1,58 @@
+{% extends 'page_layout.html' %}
+{% block body %}
+
+<link href="{{ url_for('static', filename='css/login_signup.css')}}" rel="stylesheet">
+
 <!--Form Section-->
-
-<h2 >
-    <b>Find out the most suitable crop to grow in your farm</b>
-</h2>
-
-
-<form method="POST" action="{{ url_for('crop_prediction') }}">
-    <div class="form-group">
-        <label for="Nitrogen" ><b>Nitrogen</b></label>
-        <input type="number" class="form-control" id="Nitrogen" name="nitrogen"
-            required />
-    </div>
-    <div class="form-group">
-        <label for="Phosphorous" ><b>Phosphorous</b></label>
-        <input type="number" class="form-control" id="Phosphorous" name="phosphorous"
-            required />
-    </div>
-
-    <div class="form-group">
-        <label for="Pottasium" ><b>Pottasium</b></label>
-        <input type="number" class="form-control" id="Pottasium" name="pottasium"
-            required />
-    </div>
-    <div class="form-group">
-        <label for="ph" ><b>ph level</b></label>
-        <input type="number" step="0.01" class="form-control" id="ph" name="ph" placeholder="Enter the value"
-            style="font-weight: bold" required />
-    </div>
-    <div class="form-group">
-        <label for="Rainfall" ><b>Rainfall (in mm)</b></label>
-        <input type="number" step="0.01" class="form-control" id="Rainfall" name="rainfall"
-            placeholder="Enter the value" style="font-weight: bold" required />
-    </div>
-    <div class="form-group">
-        <label for="temperature" ><b>temperature</b></label>
-        <input type="number" class="form-control" id="temperature" name="temperature"
-            required />
-    </div>
-    <div class="form-group">
-        <label for="humidity" ><b>humidity</b></label>
-        <input type="number" class="form-control" id="humidity" name="humidity"
-            required />
-    </div>
+<br><br><br><br>
+<div class="container">
+    <div class="section-title">
+        <h2>Find out the most suitable crop to grow in your farm</h2>
+      </div>
     
-        <button type="submit" >
+    <form method="POST" action="{{ url_for('crop_prediction') }}" class="box_form">
+        <div class="form-group">
+            <label for="Nitrogen"><b>Nitrogen</b></label>
+            <input type="number" class="form-control" id="Nitrogen" name="nitrogen" required />
+        </div>
+        <div class="form-group">
+            <label for="Phosphorous"><b>Phosphorous</b></label>
+            <input type="number" class="form-control" id="Phosphorous" name="phosphorous" required />
+        </div>
+
+        <div class="form-group">
+            <label for="Pottasium"><b>Potassium</b></label>
+            <input type="number" class="form-control" id="Pottasium" name="pottasium" required />
+        </div>
+        <div class="form-group">
+            <label for="ph"><b>pH level</b></label>
+            <input type="number" step="0.01" class="form-control" id="ph" name="ph" placeholder="Enter the value"
+                 required />
+        </div>
+        <div class="form-group">
+            <label for="Rainfall"><b>Rainfall (in mm)</b></label>
+            <input type="number" step="0.01" class="form-control" id="Rainfall" name="rainfall"
+                placeholder="Enter the value"  required />
+        </div>
+        <div class="form-group">
+            <label for="temperature"><b>Temperature</b></label>
+            <input type="number" class="form-control" id="temperature" name="temperature" required />
+        </div>
+        <div class="form-group">
+            <label for="humidity"><b>Humidity</b></label>
+            <input type="number" class="form-control" id="humidity" name="humidity" required />
+        </div>
+
+        <button type="submit" class="btn" id="submit">
             Predict
         </button>
-    
-</form>
+
+        
+
+    </form><br><br>
 </div>
+</div>
+
+</html>
+
+{% endblock %}
