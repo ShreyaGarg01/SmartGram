@@ -4,11 +4,18 @@ import requests
 import pickle
 import io
 from PIL import Image
+from keras.models import load_model
+import h5py
+
 
 # Trained Models loaded
 crop_recommendation_model_path = 'models/RandomForest.pkl'
 crop_recommendation_model = pickle.load(
     open(crop_recommendation_model_path, 'rb'))
+
+# Trained Models loaded
+plant_pathology_model_path = 'models/PlantPathology.hdf5'
+plant_pathology_model = load_model(plant_pathology_model_path)
 
 #  FLASK APP 
 app = Flask(__name__)
@@ -30,8 +37,11 @@ def crop_recommend():
     title = 'Crop Recommendation'
     return render_template('crop_recommendation.html', title=title)
 
-
-
+# render crop recommendation form page
+@ app.route('/plant-pathology')
+def plant_pathology():
+    title = 'Crop Recommendation'
+    return render_template('plant_pathology.html', title=title)
 # render crop recommendation form page
 @ app.route('/weather-forecast')
 def weather_forecast():
@@ -59,6 +69,18 @@ def crop_prediction():
         my_prediction = crop_recommendation_model.predict(data)
         final_prediction = my_prediction[0]
         return render_template('crop_prediction.html', prediction=final_prediction, title=title)
+
+# main API code
+@app.route('/plant-pathology', methods=['POST'])
+def pathology():
+    title = 'Plant Pathology'
+    if request.method == 'POST':
+        data = request.form['imageUpload']
+        my_prediction = plant_pathology_model.predict(data)
+
+        final_prediction = my_prediction
+        
+        return render_template('plant_pathology.html', prediction=final_prediction, title=title)
 
 if __name__ == '__main__':
     app.run(debug = True)

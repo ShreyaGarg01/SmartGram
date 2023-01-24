@@ -1,0 +1,36 @@
+
+<h2>Plant Pathology</h2>
+
+<div>
+    <form id="upload-file" method="post" enctype="multipart/form-data">
+        <label for="imageUpload" class="upload-label">
+            Choose...
+        </label>
+        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+    
+
+    <div class="image-section" style="display:none;">
+        <div class="img-preview">
+            <div id="imagePreview">
+            </div>
+        </div>
+        
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary btn-lg " id="submit">Predict!</button>
+    </div>
+</form>
+    <div class="loader" style="display:none;"></div>
+
+    <h3 id="result">
+        {{ prediction }}
+        
+    </h3>
+
+</div>
+
+
+
+
+
