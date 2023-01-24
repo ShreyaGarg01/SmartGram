@@ -19,6 +19,11 @@ def home():
     title = 'Home'
     return render_template('index.html', title=title)
 
+@ app.route('/home')
+def start():
+    title = 'Home'
+    return render_template('index.html', title=title)
+
 # render crop recommendation form page
 @ app.route('/crop-recommend')
 def crop_recommend():

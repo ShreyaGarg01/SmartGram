@@ -1,9 +1,8 @@
 {% extends 'page_layout.html' %}
-
 {% block body %}
 
 
-<link href="{{ url_for('static', filename='weather_forecast/style.css')}}" rel="stylesheet">    
+<link href="{{ url_for('static', filename='weather_forecast/weather.css')}}" rel="stylesheet">    
 
 <body>
     <main>
@@ -12,14 +11,8 @@
                 <input type="search" id="search" placeholder="Search by city name">
             </form>
         </div>
-        <div class="row" id="weather">
-            <!-- <div>
-                <img src="https://openweathermap.org/img/wn/04n@2x.png" alt="">
-            </div>
-            <div>
-                <h2>32 ℃</h2>
-                <h4> Clear </h4>
-            </div> -->
+        <div style="text-align: center;" id="weather">
+           
         </div>
     </main>
     <script src="{{ url_for('static', filename='weather_forecast/weather.js')}}"></script>
