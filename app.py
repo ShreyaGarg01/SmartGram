@@ -22,6 +22,12 @@ crop_recommendation_model = pickle.load(
 plant_pathology_model_path = 'models/PlantPathology.hdf5'
 plant_pathology_model = load_model(plant_pathology_model_path)
 
+
+# Trained Models loaded
+crop_yield_model_path = 'models/crop_yield.pkl'
+crop_yield_model = pickle.load(
+    open(crop_yield_model_path, 'rb'))
+
 #  FLASK APP 
 app = Flask(__name__)
 
@@ -43,9 +49,16 @@ def crop_recommend():
     return render_template('crop_recommendation.html', title=title)
 
 # render crop recommendation form page
+@ app.route('/crop-yield')
+def crop_yield():
+    title = 'Crop Yield'
+    return render_template('crop_yield.html', title=title)
+
+
+# render crop recommendation form page
 @ app.route('/plant-pathology')
 def plant_pathology():
-    title = 'Crop Recommendation'
+    title = 'Plant Pathology'
     return render_template('plant_pathology.html', title=title)
 # render crop recommendation form page
 @ app.route('/weather-forecast')
@@ -74,6 +87,22 @@ def crop_prediction():
         my_prediction = crop_recommendation_model.predict(data)
         final_prediction = my_prediction[0]
         return render_template('crop_prediction.html', prediction=final_prediction, title=title)
+
+
+
+@ app.route('/crop-yield', methods=['GET', 'POST'])
+def crop_yield_prediction():
+    title = 'Crop Yield'
+    if request.method == 'POST':
+        Year = int(request.form['Year'])
+        average_rain_fall_mm_per_year = int(request.form['average_rain_fall_mm_per_year'])
+        pesticides_tonnes = int(request.form['pesticides_tonnes'])
+        temperature = float(request.form['temperature'])
+
+        data = np.array([[Year, average_rain_fall_mm_per_year, pesticides_tonnes, temperature]])
+        my_prediction = crop_yield_model.predict(data)
+        final_prediction = my_prediction[0]
+        return render_template('crop_yield.html', prediction=final_prediction, title=title)
 
 # main API code
 @app.route('/plant-pathology', methods=['GET', 'POST'])
